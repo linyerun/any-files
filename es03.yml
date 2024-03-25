@@ -1,0 +1,39 @@
+# 加入如下配置
+#集群名称
+cluster.name: cluster-es
+
+#节点名称，每个节点的名称不能重复     (*)
+node.name: node03
+
+#ip 地址，每个节点的地址不能重复     (*)
+network.host: es.node03
+
+#是不是有资格主节点
+node.master: false             # (*)
+node.data: true
+http.port: 9203                # (*)
+transport.tcp.port: 9303       # (*)
+
+# head 插件需要这打开这两个配置
+http.cors.allow-origin: "*"
+http.cors.enabled: true
+http.max_content_length: 200mb
+
+#es7.x 之后新增的配置，初始化一个新的集群时需要此配置来选举 master      (*)
+cluster.initial_master_nodes: ["node01"]
+
+#es7.x 之后新增的配置，节点发现
+discovery.seed_hosts: ["es.node01:9301","es.node02:9302","es.node03:9303"]
+gateway.recover_after_nodes: 2
+network.tcp.keep_alive: true
+network.tcp.no_delay: true
+transport.tcp.compress: true
+
+#集群内同时启动的数据任务个数，默认是 2 个
+cluster.routing.allocation.cluster_concurrent_rebalance: 16
+
+#添加或删除节点及负载均衡时并发恢复的线程个数，默认 4 个
+cluster.routing.allocation.node_concurrent_recoveries: 16
+
+#初始化数据恢复时，并发恢复线程的个数，默认 4 个
+cluster.routing.allocation.node_initial_primaries_recoveries: 16
