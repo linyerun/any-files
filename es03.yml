@@ -9,7 +9,7 @@ node.name: node03
 network.host: es.node03
 
 #是不是有资格主节点
-node.master: false             # (*)
+node.master: true             # (*)
 node.data: true
 http.port: 9203                # (*)
 transport.tcp.port: 9303       # (*)
