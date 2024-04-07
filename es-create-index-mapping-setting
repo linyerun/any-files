@@ -1,0 +1,18 @@
+{
+    "settings": {
+        "number_of_shards": 3,  // 分片数
+        "number_of_replicas": 1 // 副本数
+    },
+    "mappings": {
+        "properties": {
+            "name": {
+                "type": "text",
+                "index": true
+            },
+            "age": {
+                "type": "integer",
+                "index": true
+            }
+        }
+    }
+}
